@@ -287,7 +287,9 @@
 
   if(navigator.mediaDevices?.enumerateDevices) fillCameraList().catch(()=>{});
     // ===== KIRIM DATA KE CLOUDFLARE D1 =====
+// ===== KIRIM DATA KE CLOUDFLARE D1 (ENDPOINT SEDERHANA) =====
 const btnSendD1 = document.getElementById("sendD1");
+
 btnSendD1.onclick = async () => {
   const local = JSON.parse(localStorage.getItem("videoPraktek"));
 
@@ -298,19 +300,28 @@ btnSendD1.onclick = async () => {
 
   try {
     const res = await fetch(
-      "https://ujicoba.ademarishaa07.workers.dev/products",
+      "https://ujicoba.ademarishaa07.workers.dev/video",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(local)
+        body: JSON.stringify({
+          name: local.nama,
+          youtube_url: local.youtube
+        })
       }
     );
 
-    alert(res.ok ? "Data dikirim ke D1" : "Gagal kirim ke D1");
-  } catch {
+    if (res.ok) {
+      alert("Berhasil kirim ke D1 ✅");
+    } else {
+      alert("Gagal kirim ke D1 ❌");
+    }
+  } catch (e) {
     alert("Error koneksi");
+    console.error(e);
   }
 };
+
 function simpanVideoLocal() {
   const nama = document.getElementById("name").value;
   const youtube = document.getElementById("youtube").value;
