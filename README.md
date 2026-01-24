@@ -1,8 +1,17 @@
 # Sistem Presensi
-
+Link Github Pages : https://ademarishaa07.github.io/iot/
+Link Demo : https://youtube.com/shorts/wQ9WDti1T1k
 ## 📋 Deskripsi Proyek
 
-Sistem antrian cerdas yang menggunakan teknologi **face recognition** untuk mengidentifikasi pengunjung secara otomatis. Sistem ini dilengkapi dengan simulasi jumlah loket, tiket, pengunjung, dan waktu pelayanan.
+Aplikasi presensi wajah berbasis web menggunakan OpenCV.js dan ESP32-CAM.
+Sistem melakukan deteksi dan verifikasi wajah, lalu mengirimkan sinyal ke ESP32
+untuk menyalakan LED sebagai indikator presensi berhasil.
+
+## Teknologi
+- HTML, CSS, JavaScript (1 file)
+- OpenCV.js
+- ESP32-CAM
+- GitHub Pages
 
 ## 🎯 Fitur Utama
 
