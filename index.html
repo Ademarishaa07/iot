@@ -77,6 +77,7 @@
         <button id="enroll" class="secondary" disabled>Enroll</button>
         <button id="clearDb" class="secondary">Clear DB</button>
         <button id="exportDb" class="secondary">Export</button>
+        <button id="sendD1" class="secondary">Kirim ke D1</button>
         <label class="secondary" style="padding:8px 12px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;background:#334155">
           Import<input id="importDb" type="file" accept="application/json" style="display:none">
         </label>
@@ -280,6 +281,45 @@
   }
 
   if(navigator.mediaDevices?.enumerateDevices) fillCameraList().catch(()=>{});
+    // ===== KIRIM DATA KE CLOUDFLARE D1 =====
+const btnSendD1 = document.getElementById("sendD1");
+
+btnSendD1.onclick = async () => {
+  const nama = document.getElementById("name").value;
+
+  if (!nama) {
+    alert("Isi nama terlebih dahulu");
+    return;
+  }
+
+  const data = {
+    nama: nama,
+    waktu: new Date().toISOString()
+  };
+
+  try {
+    const res = await fetch(
+      "https://ujicoba.ademarishaa07.workers.dev/products",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }
+    );
+
+    if (res.ok) {
+      alert("Data berhasil dikirim ke D1");
+    } else {
+      alert("Gagal kirim ke D1");
+    }
+  } catch (err) {
+    alert("Error koneksi ke server");
+    console.error(err);
+  }
+};
+
   </script>
 </body>
 </html>
